@@ -44,8 +44,8 @@ class NoteFragment : Fragment() {
 
             if (binding.titleText.text.toString() != "" || binding.contentText.toString() != "") {
                 val time = System.currentTimeMillis()
-                currentNote.title = binding.titleText.toString()
-                currentNote.content = binding.contentText.toString()
+                currentNote.title = binding.titleText.text.toString()
+                currentNote.content = binding.contentText.text.toString()
                 currentNote.updateTime = time
                 if(currentNote.id == 0L){
                     currentNote.creationTime = time
@@ -55,11 +55,11 @@ class NoteFragment : Fragment() {
                 Navigation.findNavController(it).popBackStack()
             }
         }
-        observeVievModel()
+        observeViewModel()
 
     }
 
-    private fun observeVievModel() {
+    private fun observeViewModel() {
         viewModel.stored.observe(viewLifecycleOwner, Observer {
             if(it){
                 Toast.makeText(context,"Yesss",Toast.LENGTH_SHORT).show()
