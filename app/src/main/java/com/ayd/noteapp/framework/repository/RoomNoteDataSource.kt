@@ -1,4 +1,4 @@
-package com.ayd.noteapp.framework
+package com.ayd.noteapp.framework.repository
 
 import android.content.Context
 import com.ayd.core.data.Note

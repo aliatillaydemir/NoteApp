@@ -9,17 +9,16 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.ayd.noteapp.R
 import com.ayd.noteapp.databinding.FragmentNoteListBinding
-import com.ayd.noteapp.framework.ListViewModel
+import com.ayd.noteapp.framework.viewmodels.ListViewModel
 
 
-class NoteList : Fragment() {
+class NoteList : Fragment(), ListAction {
 
     private var _binding: FragmentNoteListBinding? = null
     private val binding get() = _binding!!
 
-    private val noteListAdapter = NoteAdapter(arrayListOf())
+    private val noteListAdapter = NoteAdapter(arrayListOf(), this)
     private lateinit var viewModel: ListViewModel
 
     override fun onCreateView(
@@ -68,6 +67,9 @@ class NoteList : Fragment() {
         Navigation.findNavController(binding.noteRecyclerView).navigate(action)
     }
 
+    override fun onClick(id: Long) {
+        goToDetails(id)
+    }
 
 
 }
