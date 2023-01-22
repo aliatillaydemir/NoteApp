@@ -15,4 +15,5 @@
     <color name="color_background">#FFFFFF</color>
     <color name="color_text_primary">#0E0E0E</color>
     <color name="color_text_secondary">#474545</color>
+    <color name="color_splash">#B89FD1</color>
 </resources>

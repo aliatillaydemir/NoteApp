@@ -1,5 +1,6 @@
 package com.ayd.noteapp.presentation.launch
 
+import android.content.Context
 import android.content.Intent
 import android.media.Image
 import androidx.appcompat.app.AppCompatActivity
@@ -13,6 +14,8 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.ayd.noteapp.R
+import com.ayd.noteapp.framework.utils.Constants.Companion.SHARED_PREF_BOARD
+import com.ayd.noteapp.framework.utils.Constants.Companion.SHARED_PREF_EDIT
 import com.ayd.noteapp.presentation.MainActivity
 import com.google.android.material.button.MaterialButton
 
@@ -22,6 +25,7 @@ class LaunchActivity : AppCompatActivity() {
     private lateinit var indicatorsContainer: LinearLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        setTheme(R.style.NoActionBarStyle)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_launch)
         setOnBoardingItems()
@@ -75,6 +79,7 @@ class LaunchActivity : AppCompatActivity() {
 
     private fun navigateHome(){
         startActivity(Intent(applicationContext,MainActivity::class.java))
+        onBoardFinish()
         finish()
     }
 
@@ -122,5 +127,13 @@ class LaunchActivity : AppCompatActivity() {
             }
         }
     }
+
+    private fun onBoardFinish(){
+        val sharedPref = this.getSharedPreferences(SHARED_PREF_BOARD, Context.MODE_PRIVATE)
+        val editor = sharedPref.edit()
+        editor.putBoolean(SHARED_PREF_EDIT,true)
+        editor.apply()
+    }
+
 
 }
